@@ -1,0 +1,19 @@
+<h3>All balls</h3>
+<div class="card-container">
+  <mat-card *ngFor="let ball of this.firestoreService.soccerBalls">
+    <mat-card-header>
+      <mat-card-title>{{ ball.brand }} {{ ball.ballName }}</mat-card-title>
+      <mat-card-subtitle>Used in: {{ ball.competition }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="ball.imageUrl" alt="Photo of a Ball"/>
+    <mat-card-content>
+      <p>Main material: {{ ball.material }}</p>
+      <p>Release date: {{ ball.releaseDate }}</p>
+      <mat-slide-toggle disabled [checked]="ball.fifaApproved" >FIFA approved</mat-slide-toggle>
+      <div class="card-buttons">
+        <button mat-raised-button color="primary" type="button" (click)="editBall(ball)">Edit ball</button>
+        <button mat-raised-button color="warn" type="button" (click)="deleteBall(ball)">Delete ball</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,41 @@
+<h3>Edit {{ball.ballName}} ball</h3>
+<form class="form" [formGroup]="ballForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Ball name</mat-label>
+    <input matInput formControlName="ballName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Used in</mat-label>
+    <input matInput formControlName="competition">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Brand</mat-label>
+    <mat-select formControlName="brand">
+      <mat-option *ngFor="let brand of this.firestoreService.brands" [value]="brand">{{brand}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Release date</mat-label>
+    <input matInput (dateChange)="handleDateChange($event)" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Main material</mat-label>
+    <mat-select formControlName="material">
+      <mat-option *ngFor="let material of this.firestoreService.materials" [value]="material">{{material}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-slide-toggle formControlName="fifaApproved">FIFA approved</mat-slide-toggle>
+
+  <div class="image-uploader">
+    <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">Update Ball Image</button>
+    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept="image/png">
+  </div>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!ballForm.valid || !ballForm.dirty">Modify ball</button>
+</form>
