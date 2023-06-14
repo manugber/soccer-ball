@@ -10,8 +10,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 export class FirestoreService {
 
   private path = '/soccer-ball';
-  brands = ['Nike', 'Adidas'];
-  materials = ['Polyester', 'X'];
+  brands = ['Nike', 'Adidas', 'Puma'];
+  materials = ['Polyester', 'Synthetic leather', 'Polyurethane'];
   soccerBalls: SoccerBallDto[] = [];
 
   constructor(private firestore: AngularFirestore, private storage: AngularFireStorage) {}
